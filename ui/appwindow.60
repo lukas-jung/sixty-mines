@@ -3,32 +3,14 @@ import { Button, VerticalBox } from "sixtyfps_widgets.60";
 
 struct TileData := {
     is_mine: bool,
+    opened: bool,
     marked: bool,
-    opened: bool
 }
 
 export AppWindow := Window {
     property <int> row_length: 4;
-    property <[TileData]> mine_field: [
-        {opened: true},
-        {},
-        {is_mine: true, opened: true},
-        {marked: true},
-        {},
-        {is_mine: true, marked: true},
-        {},
-        {},
-        {},
-        {},
-        {is_mine: true},
-        {},
-        {is_mine: true},
-        {},
-        {},
-        {},
-    ];
-    callback request-increase-value();
-    for tile[i] in mine_field : Button {
+    property <[TileData]> minefield_model;
+    for tile[i] in minefield_model : Button {
         x: mod(i, row_length) * 74px;
         y: floor(i / row_length) * 74px;
         width: 64px;
