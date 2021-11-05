@@ -5,16 +5,18 @@ struct TileData := {
     is_mine: bool,
     opened: bool,
     marked: bool,
+    neighbours: int,
 }
 
 export AppWindow := Window {
     property <int> row_length: 4;
     property <[TileData]> minefield_model;
     for tile[i] in minefield_model : Button {
+        text: tile.opened && tile.neighbours > 0 ? tile.neighbours : "";
         x: mod(i, row_length) * 74px;
         y: floor(i / row_length) * 74px;
         width: 64px;
         height: 64px;
-        color: tile.is_mine && tile.opened ? red : !tile.is_mine && tile.opened ? green : tile.marked ? orange : white;
+        background: tile.is_mine && tile.opened ? red : !tile.is_mine && tile.opened ? green : tile.marked ? orange : white;
     }
 }

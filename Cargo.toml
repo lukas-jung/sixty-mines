@@ -9,6 +9,7 @@ build = "build.rs"
 
 [dependencies]
 sixtyfps = "0.1"
+rand = "0.8.4"
 
 [build-dependencies]
 sixtyfps-build = "0.1"
