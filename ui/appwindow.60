@@ -11,6 +11,7 @@ struct TileData := {
 export AppWindow := Window {
     property <int> row_length: 4;
     property <[TileData]> minefield_model;
+    callback open_tile(int);
     for tile[i] in minefield_model : Button {
         text: tile.opened && tile.neighbours > 0 ? tile.neighbours : "";
         x: mod(i, row_length) * 74px;
@@ -18,5 +19,6 @@ export AppWindow := Window {
         width: 64px;
         height: 64px;
         background: tile.is_mine && tile.opened ? red : !tile.is_mine && tile.opened ? green : tile.marked ? orange : white;
+        clicked => { open_tile(i) }
     }
 }
